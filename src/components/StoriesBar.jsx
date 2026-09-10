@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Sparkles, Heart, Crown, Gem } from 'lucide-react';
+import { Flame, Sparkles, Heart, Crown, Gem, Truck } from 'lucide-react';
 
 const stories = [
   { id: "Todos", label: "Todas as Peças", icon: Flame, border: "from-amber-400 via-rose-500 to-purple-600" },
