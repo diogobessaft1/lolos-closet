@@ -1,7 +1,11 @@
 {
+  "framework": "vite",
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!assets/|produtos/|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
