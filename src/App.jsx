@@ -19,28 +19,48 @@ import confetti from 'canvas-confetti';
 export default function App() {
   // Persistence state
   const [products, setProducts] = useState(() => {
-    const saved = localStorage.getItem('lolos_products');
-    return saved ? JSON.parse(saved) : initialProducts;
+    try {
+      const saved = localStorage.getItem('lolos_products');
+      return saved ? JSON.parse(saved) : initialProducts;
+    } catch (e) {
+      return initialProducts;
+    }
   });
 
   const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem('lolos_cart');
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem('lolos_cart');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
   });
 
   const [favorites, setFavorites] = useState(() => {
-    const saved = localStorage.getItem('lolos_favorites');
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem('lolos_favorites');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
   });
 
   const [customerProfile, setCustomerProfile] = useState(() => {
-    const saved = localStorage.getItem('lolos_customer_profile');
-    return saved ? JSON.parse(saved) : null;
+    try {
+      const saved = localStorage.getItem('lolos_customer_profile');
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      return null;
+    }
   });
 
   const [orderHistory, setOrderHistory] = useState(() => {
-    const saved = localStorage.getItem('lolos_order_history');
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem('lolos_order_history');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
   });
 
   const [storePhone, setStorePhone] = useState(() => {
@@ -62,29 +82,39 @@ export default function App() {
   const [discount, setDiscount] = useState(0);
   const [sortBy, setSortBy] = useState("destaques");
 
-  // Save to localStorage
+  // Save to localStorage (Safe with try/catch)
   useEffect(() => {
-    localStorage.setItem('lolos_cart', JSON.stringify(cart));
+    try {
+      localStorage.setItem('lolos_cart', JSON.stringify(cart));
+    } catch (e) {}
   }, [cart]);
 
   useEffect(() => {
-    localStorage.setItem('lolos_favorites', JSON.stringify(favorites));
+    try {
+      localStorage.setItem('lolos_favorites', JSON.stringify(favorites));
+    } catch (e) {}
   }, [favorites]);
 
   useEffect(() => {
-    localStorage.setItem('lolos_products', JSON.stringify(products));
+    try {
+      localStorage.setItem('lolos_products', JSON.stringify(products));
+    } catch (e) {}
   }, [products]);
 
   useEffect(() => {
-    if (customerProfile) {
-      localStorage.setItem('lolos_customer_profile', JSON.stringify(customerProfile));
-    } else {
-      localStorage.removeItem('lolos_customer_profile');
-    }
+    try {
+      if (customerProfile) {
+        localStorage.setItem('lolos_customer_profile', JSON.stringify(customerProfile));
+      } else {
+        localStorage.removeItem('lolos_customer_profile');
+      }
+    } catch (e) {}
   }, [customerProfile]);
 
   useEffect(() => {
-    localStorage.setItem('lolos_order_history', JSON.stringify(orderHistory));
+    try {
+      localStorage.setItem('lolos_order_history', JSON.stringify(orderHistory));
+    } catch (e) {}
   }, [orderHistory]);
 
   const toggleFavorite = (productId) => {
