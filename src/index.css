@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  h1, h2, h3, .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  /* Previne zoom automático do iOS Safari em inputs de formulário */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  @media (min-width: 640px) {
+    input, select, textarea {
+      font-size: 12px !important;
+    }
+  }
+}
+
+/* Hide scrollbar for clean story & horizontal lists */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
